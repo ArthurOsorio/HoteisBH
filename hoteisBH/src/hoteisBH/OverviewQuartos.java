@@ -25,6 +25,9 @@ public class OverviewQuartos extends JFrame {
 	public JLabel lblNome = new JLabel("");
 	public JLabel lblCPF = new JLabel("");
 	public JLabel lblTelefone = new JLabel("");
+	public JLabel lblDataRes = new JLabel("");
+	public JLabel lblDataSaida = new JLabel("");
+	public JLabel lblReservado = new JLabel("");
 
 	/**
 	 * Launch the application.
@@ -136,7 +139,6 @@ public class OverviewQuartos extends JFrame {
 		lblDataResTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panel_5.add(lblDataResTitle, BorderLayout.NORTH);
 		
-		JLabel lblDataRes = new JLabel("");
 		lblDataRes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDataRes.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel_5.add(lblDataRes, BorderLayout.CENTER);
@@ -150,7 +152,6 @@ public class OverviewQuartos extends JFrame {
 		lblDataSaidaTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panel_7.add(lblDataSaidaTitle, BorderLayout.NORTH);
 		
-		JLabel lblDataSaida = new JLabel("");
 		lblDataSaida.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDataSaida.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel_7.add(lblDataSaida, BorderLayout.CENTER);
@@ -164,7 +165,6 @@ public class OverviewQuartos extends JFrame {
 		lblReservadoTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
 		panel_8.add(lblReservadoTitle, BorderLayout.NORTH);
 		
-		JLabel lblReservado = new JLabel("");
 		lblReservado.setHorizontalAlignment(SwingConstants.CENTER);
 		lblReservado.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel_8.add(lblReservado, BorderLayout.CENTER);

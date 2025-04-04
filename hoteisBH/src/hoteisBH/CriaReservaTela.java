@@ -5,14 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.Dimension;
-import javax.swing.BoxLayout;
 import javax.swing.SpringLayout;
+import javax.swing.JSlider;
+
 
 public class CriaReservaTela extends JFrame {
 
@@ -45,7 +45,18 @@ public class CriaReservaTela extends JFrame {
 	private JTextField txtNome;
 	private JTextField txtTelefone;
 	private JTextField txtCPF;
-	public int id;
+	public JSlider slider = new JSlider();
+	JLabel lblJslider = new JLabel("0");
+	private int id;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int value;
 
 	/**
 	 * Launch the application.
@@ -74,12 +85,16 @@ public class CriaReservaTela extends JFrame {
 
 		setContentPane(contentPane);
 		SpringLayout sl_contentPane = new SpringLayout();
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblJslider, 293, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblJslider, -1, SpringLayout.NORTH, slider);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblJslider, 312, SpringLayout.WEST, contentPane);
 		contentPane.setLayout(sl_contentPane);
 		
 		JLabel lblNewLabel = new JLabel("Nome");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblNewLabel, 10, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNewLabel, 43, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblNewLabel, 61, SpringLayout.WEST, contentPane);
 		lblNewLabel.setMaximumSize(new Dimension(27, 35));
 		lblNewLabel.setPreferredSize(new Dimension(27, 50));
 		contentPane.add(lblNewLabel);
@@ -96,7 +111,7 @@ public class CriaReservaTela extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Telefone");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 19, SpringLayout.SOUTH, txtNome);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblNewLabel_1, 0, SpringLayout.WEST, lblNewLabel);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblNewLabel_1, 10, SpringLayout.WEST, contentPane);
 		lblNewLabel_1.setPreferredSize(new Dimension(42, 50));
 		contentPane.add(lblNewLabel_1);
 		
@@ -113,7 +128,7 @@ public class CriaReservaTela extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("CPF");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 45, SpringLayout.SOUTH, txtTelefone);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblNewLabel_2, 0, SpringLayout.WEST, lblNewLabel);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblNewLabel_2, 10, SpringLayout.WEST, contentPane);
 		contentPane.add(lblNewLabel_2);
 		
 		txtCPF = new JTextField();
@@ -132,10 +147,30 @@ public class CriaReservaTela extends JFrame {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnConcluir = new JButton("Concluir");
+		btnConcluir.setActionCommand("CONCLUIR");
+		btnConcluir.addActionListener(new ActionButtonsListenerReservaTela(this));
 		panel.add(btnConcluir);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setActionCommand("CANCELAR");
+		btnCancelar.addActionListener(new ActionButtonsListenerReservaTela(this));
 		panel.add(btnCancelar);
+		slider.setMaximum(30);
+		
+		slider.addChangeListener(new SliderListener(this));
+		slider.setValue(0);
+		sl_contentPane.putConstraint(SpringLayout.WEST, slider, 27, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, slider, -19, SpringLayout.NORTH, panel);
+		sl_contentPane.putConstraint(SpringLayout.EAST, slider, -27, SpringLayout.EAST, contentPane);
+		contentPane.add(slider);
+		
+		JLabel lblDias = new JLabel("Dias para reservar");
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblNewLabel_1, 0, SpringLayout.EAST, lblDias);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblDias, -96, SpringLayout.SOUTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblDias, 0, SpringLayout.WEST, txtNome);
+		contentPane.add(lblDias);
+		lblJslider.setMinimumSize(new Dimension(10, 14));
+		lblJslider.setPreferredSize(new Dimension(10, 14));
+		contentPane.add(lblJslider);
 	}
-
 }

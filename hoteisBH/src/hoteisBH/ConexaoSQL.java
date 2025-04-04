@@ -53,11 +53,12 @@ public class ConexaoSQL {
 	public static void createTable(Connection c) {
 		try {
 			String url = "CREATE TABLE cliente"+ "(cliente_id int AUTO_INCREMENT PRIMARY KEY NOT NULL,nome VARCHAR(255) NOT NULL,"+
-					"telefone int NOT NULL)";
+					"telefone int NOT NULL, cpf int NOT NULL)";
 			Statement stm = c.createStatement();
 			stm.addBatch(url);
 			url = "CREATE TABLE quartos" + "(quarto_id int AUTO_INCREMENT PRIMARY KEY NOT NULL,"+
-				    "id_cliente int UNIQUE,CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(cliente_id))";
+				    "id_cliente int UNIQUE,data_reserva DATE,dias_reservados int,"
+				    		+ "CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(cliente_id))";
 			stm.addBatch(url);
 			stm.executeBatch();
 		}catch(SQLException sqle) {

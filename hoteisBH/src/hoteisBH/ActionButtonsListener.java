@@ -13,7 +13,8 @@ public class ActionButtonsListener implements ActionListener {
 	}
 	private void reservar() {
 		CriaReservaTela frame = new CriaReservaTela();
-		frame.id = quartos.id;
+		System.out.println(quartos.id);
+		frame.setId(quartos.id);
 		frame.setVisible(true);
 	}
 	private void desocupar() {
@@ -22,9 +23,12 @@ public class ActionButtonsListener implements ActionListener {
 			int result=JOptionPane.showConfirmDialog(quartos, "Deseja desocupar o quarto?");
 			if (result == JOptionPane.YES_OPTION) {
 			Statement stm = con.createStatement();
-			stm.executeUpdate(String.format("UPDATE quartos "+"set id_cliente = null "+"WHERE quarto_id = %d",quartos.id));
+			stm.executeUpdate(String.format("UPDATE quartos "+"set id_cliente = null , data_reserva = null , dias_reservados = null "
+			+"WHERE quarto_id = %d",quartos.id));
 			quartos.lblNome.setText("");
 			quartos.lblTelefone.setText("");
+			quartos.lblDataRes.setText("");
+			quartos.lblDataSaida.setText("");
 			JOptionPane.showMessageDialog(quartos, "Quarto desocupado.");
 			}
 		} catch (SQLException e) {
