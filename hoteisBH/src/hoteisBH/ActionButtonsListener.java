@@ -12,7 +12,9 @@ public class ActionButtonsListener implements ActionListener {
 		this.quartos=q;
 	}
 	private void reservar() {
-		
+		CriaReservaTela frame = new CriaReservaTela();
+		frame.id = quartos.id;
+		frame.setVisible(true);
 	}
 	private void desocupar() {
 		Connection con = ConexaoSQL.getConnection();

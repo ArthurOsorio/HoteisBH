@@ -18,9 +18,34 @@ public class CriaReservaTela extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public JTextField getTxtNome() {
+		return txtNome;
+	}
+
+	public void setTxtNome(JTextField txtNome) {
+		this.txtNome = txtNome;
+	}
+
+	public JTextField getTxtTelefone() {
+		return txtTelefone;
+	}
+
+	public void setTxtTelefone(JTextField txtTelefone) {
+		this.txtTelefone = txtTelefone;
+	}
+
+	public JTextField getTxtCPF() {
+		return txtCPF;
+	}
+
+	public void setTxtCPF(JTextField txtCPF) {
+		this.txtCPF = txtCPF;
+	}
+
 	private JTextField txtNome;
 	private JTextField txtTelefone;
 	private JTextField txtCPF;
+	public int id;
 
 	/**
 	 * Launch the application.
