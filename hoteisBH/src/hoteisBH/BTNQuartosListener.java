@@ -30,10 +30,7 @@ public class BTNQuartosListener implements ActionListener {
 			overview.lblDataRes.setText(rs.getDate("data_reserva").toString());
 			Date data = rs.getDate("data_reserva");
 			LocalDate lcdata = data.toLocalDate();
-			System.out.println(lcdata);
 			lcdata.plusDays(rs.getInt("dias_reservados"));
-			System.out.println(rs.getInt("dias_reservados"));
-			System.out.println(lcdata);
 			overview.lblDataSaida.setText(lcdata.toString());
 			overview.lblReservado.setText("Ocupado");
 			overview.lblReservado.setFont(new Font("Tahoma",Font.BOLD,13));
