@@ -54,7 +54,7 @@ public class ConexaoSQL {
 	public static void createTable(Connection c) {
 		try {
 			String url = "CREATE TABLE cliente"+ "(cliente_id int AUTO_INCREMENT PRIMARY KEY NOT NULL,nome VARCHAR(255) NOT NULL,"+
-					"telefone int NOT NULL, cpf int UNIQUE NOT NULL)";
+					"telefone BIGINT(11) NOT NULL, cpf BIGINT(11) UNIQUE NOT NULL)";
 			Statement stm = c.createStatement();
 			stm.addBatch(url);
 			url = "CREATE TABLE quartos" + "(quarto_id int AUTO_INCREMENT PRIMARY KEY NOT NULL,"+

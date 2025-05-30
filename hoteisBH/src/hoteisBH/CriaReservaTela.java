@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.PlainDocument;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
@@ -18,6 +19,8 @@ public class CriaReservaTela extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private static final int tamanhoCPF = 11;
+	private static final int tamanhoTel = 11;
 	public JTextField getTxtNome() {
 		return txtNome;
 	}
@@ -124,6 +127,8 @@ public class CriaReservaTela extends JFrame {
 		txtTelefone.setPreferredSize(new Dimension(7, 5));
 		txtTelefone.setMinimumSize(new Dimension(7, 5));
 		contentPane.add(txtTelefone);
+		PlainDocument docTel = (PlainDocument) txtTelefone.getDocument();
+		docTel.setDocumentFilter(new FiltroNum(tamanhoTel));
 		txtTelefone.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("CPF");
@@ -137,6 +142,8 @@ public class CriaReservaTela extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtCPF, 287, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, txtCPF, 646, SpringLayout.WEST, contentPane);
 		contentPane.add(txtCPF);
+		PlainDocument docCPF = (PlainDocument) txtCPF.getDocument();
+		docCPF.setDocumentFilter(new FiltroNum(tamanhoCPF));
 		txtCPF.setColumns(10);
 		
 		JPanel panel = new JPanel();

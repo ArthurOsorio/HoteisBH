@@ -25,8 +25,8 @@ public class BTNQuartosListener implements ActionListener {
 			rs=stm.executeQuery("SELECT * from quartos"+" INNER JOIN cliente on cliente.cliente_id = quartos.id_cliente where quarto_id ="+id);
 			if(rs.next()) {
 			overview.getLblNome().setText(rs.getString("nome"));
-			overview.getLblTelefone().setText(Integer.toString(rs.getInt("telefone")));
-			overview.getLblCPF().setText(Integer.toString(rs.getInt("cpf")));
+			overview.getLblTelefone().setText(Long.toString(rs.getLong("telefone")));
+			overview.getLblCPF().setText(Long.toString(rs.getLong("cpf")));
 			overview.getLblDataRes().setText(rs.getDate("data_reserva").toString());
 			Date data = rs.getDate("data_reserva");
 			LocalDate lcdata = data.toLocalDate();
