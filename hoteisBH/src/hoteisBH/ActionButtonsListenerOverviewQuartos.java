@@ -1,20 +1,21 @@
 package hoteisBH;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
 import javax.swing.JOptionPane;
 
-public class ActionButtonsListener implements ActionListener {
+public class ActionButtonsListenerOverviewQuartos implements ActionListener {
 	private OverviewQuartos quartos;
-	public ActionButtonsListener(OverviewQuartos q) {
+	public ActionButtonsListenerOverviewQuartos(OverviewQuartos q) {
 		this.quartos=q;
 	}
 	private void reservar() {
 		CriaReservaTela frame = new CriaReservaTela();
-		System.out.println(quartos.id);
-		frame.setId(quartos.id);
+		frame.setId(quartos.getId());
 		frame.setVisible(true);
 	}
 	private void desocupar() {
@@ -24,16 +25,25 @@ public class ActionButtonsListener implements ActionListener {
 			if (result == JOptionPane.YES_OPTION) {
 			Statement stm = con.createStatement();
 			stm.executeUpdate(String.format("UPDATE quartos "+"set id_cliente = null , data_reserva = null , dias_reservados = null "
-			+"WHERE quarto_id = %d",quartos.id));
-			quartos.lblNome.setText("");
-			quartos.lblTelefone.setText("");
-			quartos.lblDataRes.setText("");
-			quartos.lblDataSaida.setText("");
+			+"WHERE quarto_id = %d",quartos.getId()));
+			quartos.getLblNome().setText("");
+			quartos.getLblTelefone().setText("");
+			quartos.getLblCPF().setText("");
+			quartos.getLblDataRes().setText("");
+			quartos.getLblDataSaida().setText("");
+			quartos.getLblReservado().setText("Desocupado");
+			quartos.getLblReservado().setFont(new Font("Tahoma",Font.BOLD,13));
+			quartos.getLblReservado().setForeground(Color.GREEN);;
 			JOptionPane.showMessageDialog(quartos, "Quarto desocupado.");
 			}
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
+	}
+	private void sair() {
+		Login frame = new Login();
+		quartos.dispose();
+		frame.setVisible(true);
 	}
 
 	@Override
@@ -47,7 +57,7 @@ public class ActionButtonsListener implements ActionListener {
 			desocupar();
 			break;
 		case "SAIR":
-			System.exit(0);
+			sair();
 		}
 	}
 

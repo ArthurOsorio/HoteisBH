@@ -21,8 +21,8 @@ public class ActionButtonsListenerReservaTela implements ActionListener{
 			stm.setInt(2, Integer.parseInt(frame.getTxtTelefone().getText()));
 			stm.setInt(3, Integer.parseInt(frame.getTxtCPF().getText()));
 			stm.executeUpdate();
-			stm = con.prepareStatement("UPDATE quartos set id_cliente = (SELECT cliente_id FROM cliente WHERE cliente.nome = ?) WHERE quarto_id = ?");
-			stm.setString(1, frame.getTxtNome().getText());
+			stm = con.prepareStatement("UPDATE quartos set id_cliente = (SELECT cliente_id FROM cliente WHERE cliente.cpf = ?) WHERE quarto_id = ?");
+			stm.setString(1, frame.getTxtCPF().getText());
 			stm.setInt(2, frame.getId());
 			stm.executeUpdate();
 			stm = con.prepareStatement("UPDATE quartos SET data_reserva = ? , dias_reservados = ? WHERE quarto_id = ?");

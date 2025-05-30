@@ -19,15 +19,71 @@ public class OverviewQuartos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public JLabel getLblNome() {
+		return lblNome;
+	}
+
+	public void setLblNome(JLabel lblNome) {
+		this.lblNome = lblNome;
+	}
+
+	public JLabel getLblCPF() {
+		return lblCPF;
+	}
+
+	public void setLblCPF(JLabel lblCPF) {
+		this.lblCPF = lblCPF;
+	}
+
+	public JLabel getLblTelefone() {
+		return lblTelefone;
+	}
+
+	public void setLblTelefone(JLabel lblTelefone) {
+		this.lblTelefone = lblTelefone;
+	}
+
+	public JLabel getLblDataRes() {
+		return lblDataRes;
+	}
+
+	public void setLblDataRes(JLabel lblDataRes) {
+		this.lblDataRes = lblDataRes;
+	}
+
+	public JLabel getLblDataSaida() {
+		return lblDataSaida;
+	}
+
+	public void setLblDataSaida(JLabel lblDataSaida) {
+		this.lblDataSaida = lblDataSaida;
+	}
+
+	public JLabel getLblReservado() {
+		return lblReservado;
+	}
+
+	public void setLblReservado(JLabel lblReservado) {
+		this.lblReservado = lblReservado;
+	}
+
 	private Connection con = ConexaoSQL.getConnection();
 	private ResultSet rs;
-	public int id;
-	public JLabel lblNome = new JLabel("");
-	public JLabel lblCPF = new JLabel("");
-	public JLabel lblTelefone = new JLabel("");
-	public JLabel lblDataRes = new JLabel("");
-	public JLabel lblDataSaida = new JLabel("");
-	public JLabel lblReservado = new JLabel("");
+	private int id;
+	private JLabel lblNome = new JLabel("");
+	private JLabel lblCPF = new JLabel("");
+	private JLabel lblTelefone = new JLabel("");
+	private JLabel lblDataRes = new JLabel("");
+	private JLabel lblDataSaida = new JLabel("");
+	private JLabel lblReservado = new JLabel("");
 
 	/**
 	 * Launch the application.
@@ -175,17 +231,17 @@ public class OverviewQuartos extends JFrame {
 		
 		JButton btnReservar = new JButton("Reservar");
 		btnReservar.setActionCommand("RESERVAR");
-		btnReservar.addActionListener(new ActionButtonsListener(this));
+		btnReservar.addActionListener(new ActionButtonsListenerOverviewQuartos(this));
 		panel_2.add(btnReservar);
 		
 		JButton btnDesocupar = new JButton("Desocupar");
 		btnDesocupar.setActionCommand("DESOCUPAR");
-		btnDesocupar.addActionListener(new ActionButtonsListener(this));
+		btnDesocupar.addActionListener(new ActionButtonsListenerOverviewQuartos(this));
 		panel_2.add(btnDesocupar);
 		
 		JButton btnSair = new JButton("Sair");
 		btnSair.setActionCommand("SAIR");
-		btnSair.addActionListener(new ActionButtonsListener(this));
+		btnSair.addActionListener(new ActionButtonsListenerOverviewQuartos(this));
 		panel_2.add(btnSair);
 		
 	}

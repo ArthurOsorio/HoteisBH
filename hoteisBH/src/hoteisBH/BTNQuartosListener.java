@@ -24,24 +24,29 @@ public class BTNQuartosListener implements ActionListener {
 			Statement stm = con.createStatement();
 			rs=stm.executeQuery("SELECT * from quartos"+" INNER JOIN cliente on cliente.cliente_id = quartos.id_cliente where quarto_id ="+id);
 			if(rs.next()) {
-			overview.lblNome.setText(rs.getString("nome"));
-			overview.lblTelefone.setText(Integer.toString(rs.getInt("telefone")));
-			overview.lblCPF.setText(Integer.toString(rs.getInt("cpf")));
-			overview.lblDataRes.setText(rs.getDate("data_reserva").toString());
+			overview.getLblNome().setText(rs.getString("nome"));
+			overview.getLblTelefone().setText(Integer.toString(rs.getInt("telefone")));
+			overview.getLblCPF().setText(Integer.toString(rs.getInt("cpf")));
+			overview.getLblDataRes().setText(rs.getDate("data_reserva").toString());
 			Date data = rs.getDate("data_reserva");
 			LocalDate lcdata = data.toLocalDate();
-			lcdata.plusDays(rs.getInt("dias_reservados"));;
-			overview.lblDataSaida.setText(lcdata.toString());
-			overview.lblReservado.setText("Ocupado");
-			overview.lblReservado.setFont(new Font("Tahoma",Font.BOLD,13));
-			overview.lblReservado.setForeground(Color.RED);
-			overview.id = this.id;
+			lcdata = lcdata.plusDays(rs.getInt("dias_reservados"));;
+			overview.getLblDataSaida().setText(lcdata.toString());
+			overview.getLblReservado().setText("Ocupado");
+			overview.getLblReservado().setFont(new Font("Tahoma",Font.BOLD,13));
+			overview.getLblReservado().setForeground(Color.RED);
+			overview.setId(this.id);
 			con.close();
 			}else {
-				overview.id=this.id;
-				overview.lblReservado.setText("Desocupado");
-				overview.lblReservado.setFont(new Font("Tahoma",Font.BOLD,13));
-				overview.lblReservado.setForeground(Color.GREEN);;
+				overview.setId(this.id);
+				overview.getLblNome().setText("");
+				overview.getLblTelefone().setText("");
+				overview.getLblCPF().setText("");
+				overview.getLblDataRes().setText("");
+				overview.getLblDataSaida().setText("");
+				overview.getLblReservado().setText("Desocupado");
+				overview.getLblReservado().setFont(new Font("Tahoma",Font.BOLD,13));
+				overview.getLblReservado().setForeground(Color.GREEN);;
 			}
 		} catch (SQLException sqle1) {
 			System.out.println(sqle1);
