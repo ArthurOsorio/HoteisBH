@@ -2,43 +2,32 @@ package hoteisBH;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
 
 import org.mindrot.jbcrypt.BCrypt;
 
 public class ActionsButtonsListenerLogin implements ActionListener {
 	private Login login;
-	private String storedPwd;
 	private String senha;
-	private ResultSet rs;
+	private LoginDAO dao = new LoginDAO();
 	public ActionsButtonsListenerLogin(Login login) {
 		this.login=login;
 	}
 	public void login() {
-		Connection con = ConexaoSQL.getConnection();
-		try {
-			PreparedStatement stm = con.prepareStatement("SELECT * from usuarios where usuarios.nome = ?");
-			stm.setString(1, login.getTxtUsuario().getText());
-			rs = stm.executeQuery();
-			if (rs.next()) {
-				storedPwd = rs.getString("senha");
+			if (dao.verificarUsuario(login.getTxtUsuario().getText())) {
+				senha = login.getTxtSenha().getText();
+				if(checarSenha(senha)) {
+					OverviewQuartos frame = new OverviewQuartos();
+					frame.setVisible(true);
+					login.dispose();
+				}else {
+					System.out.println("Senha Incorreta");
+				}
 			}else {
 				System.out.println("Usuario não encontrado.");
 			}
-		} catch (SQLException sqle) {
-			System.out.println(sqle);
-		}
-		senha = login.getTxtSenha().getText();
-		if(checarSenha(senha)) {
-			OverviewQuartos frame = new OverviewQuartos();
-			frame.setVisible(true);
-			login.dispose();
-		}else {
-			System.out.println("Senha Incorreta");
-		}
 	}
 	public boolean checarSenha(String senha) {
-		return BCrypt.checkpw(senha, storedPwd);
+		return BCrypt.checkpw(senha, dao.getStoredPwd());
 	}
 
 	@Override

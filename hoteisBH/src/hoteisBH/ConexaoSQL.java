@@ -71,7 +71,7 @@ public class ConexaoSQL {
 	public static void populateTable(Connection c) {
 		String url = "INSERT into quartos () values ()";
 		try {
-			for (int i = 0; i<=10 ; i++) {
+			for (int i = 0; i<10 ; i++) {
 			Statement stm = c.createStatement();
 			stm.executeUpdate(url);
 			}

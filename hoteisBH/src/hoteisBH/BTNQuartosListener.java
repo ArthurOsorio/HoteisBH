@@ -10,7 +10,6 @@ import java.time.LocalDate;
 public class BTNQuartosListener implements ActionListener {
 	private OverviewQuartos overview;
 	private int id;
-	private ResultSet rs;
 	public BTNQuartosListener(OverviewQuartos over,int id) {
 		this.overview=over;
 		this.id=id;
@@ -19,24 +18,20 @@ public class BTNQuartosListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Connection con = ConexaoSQL.getConnection();
-		try {
-			Statement stm = con.createStatement();
-			rs=stm.executeQuery("SELECT * from quartos"+" INNER JOIN cliente on cliente.cliente_id = quartos.id_cliente where quarto_id ="+id);
-			if(rs.next()) {
-			overview.getLblNome().setText(rs.getString("nome"));
-			overview.getLblTelefone().setText(Long.toString(rs.getLong("telefone")));
-			overview.getLblCPF().setText(Long.toString(rs.getLong("cpf")));
-			overview.getLblDataRes().setText(rs.getDate("data_reserva").toString());
-			Date data = rs.getDate("data_reserva");
-			LocalDate lcdata = data.toLocalDate();
-			lcdata = lcdata.plusDays(rs.getInt("dias_reservados"));;
-			overview.getLblDataSaida().setText(lcdata.toString());
-			overview.getLblReservado().setText("Ocupado");
-			overview.getLblReservado().setFont(new Font("Tahoma",Font.BOLD,13));
-			overview.getLblReservado().setForeground(Color.RED);
-			overview.setId(this.id);
-			con.close();
+			OverviewQuartosDAO dao = new OverviewQuartosDAO();
+			if(dao.quartoSelecionado(this.id)) {
+				overview.getLblNome().setText(dao.getNome());
+				overview.getLblTelefone().setText(Long.toString(dao.getTelefone()));
+				overview.getLblCPF().setText(Long.toString(dao.getCpf()));
+				overview.getLblDataRes().setText(dao.getData().toString());
+				Date data = dao.getData();
+				LocalDate lcdata = data.toLocalDate();
+				lcdata = lcdata.plusDays(dao.getDiasReservados());;
+				overview.getLblDataSaida().setText(lcdata.toString());
+				overview.getLblReservado().setText("Ocupado");
+				overview.getLblReservado().setFont(new Font("Tahoma",Font.BOLD,13));
+				overview.getLblReservado().setForeground(Color.RED);
+				overview.setId(this.id);
 			}else {
 				overview.setId(this.id);
 				overview.getLblNome().setText("");
@@ -48,10 +43,6 @@ public class BTNQuartosListener implements ActionListener {
 				overview.getLblReservado().setFont(new Font("Tahoma",Font.BOLD,13));
 				overview.getLblReservado().setForeground(Color.GREEN);;
 			}
-		} catch (SQLException sqle1) {
-			System.out.println(sqle1);
-		}
-		
 		
 	}
 
