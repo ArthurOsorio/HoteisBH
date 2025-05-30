@@ -32,6 +32,7 @@ public class ActionsButtonsListenerLogin implements ActionListener {
 		if(checarSenha(senha)) {
 			OverviewQuartos frame = new OverviewQuartos();
 			frame.setVisible(true);
+			login.dispose();
 		}else {
 			System.out.println("Senha Incorreta");
 		}
