@@ -46,8 +46,10 @@ public class ActionsButtonsListenerLogin implements ActionListener {
 		switch(actCmd) {
 		case "ENTRAR":
 			login();
+			break;
 		case "SAIR":
 			System.exit(0);
+			break;
 		}
 		
 		

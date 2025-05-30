@@ -34,8 +34,10 @@ public class ActionsButtonsListenerFirstLogin implements ActionListener{
 		switch(actCmd) {
 		case "CRIAR":
 			criarUsuario();
+			break;
 		case "CANCELAR":
 			System.exit(0);
+			break;
 		}
 	}
 
