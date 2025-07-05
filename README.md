@@ -1,7 +1,7 @@
 # HoteisBH
 Projeto Faculdade sistema de Gerenciamento de Hotel
 
-OBS: Sistema movido para repositorio pessoal para continuar desenvolvimento. Conta Guilherme_Souza_da_Silva.
+OBS: Sistema movido para repositorio pessoal para continuar desenvolvimento. Conta Guilherme-Souza-da-Silva.
 
 
 Esse sistema inclui rotinas basicas para criar um sistema basico de gereciamento de hotel que inclui:
